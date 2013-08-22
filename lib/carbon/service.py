@@ -216,7 +216,7 @@ def setupJSONRPCServer(application):
   from pyleveltsd.reader import LevelTsdReader
   from twisted.web import server
 
-  reader = LevelTsdReader(LevelTsdCarbon._pesudo_singleton)
+  reader = LevelTsdReader(LevelTsdCarbon._pesudo_singleton.db)
   factory = server.Site(reader)
   jsonrpcServer = TCPServer(2005, factory)
   jsonrpcServer.setServiceParent(application)
