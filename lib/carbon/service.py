@@ -46,6 +46,7 @@ def createDaemonService(options):
   setupPipeline(root_service, settings)
   setupReceivers(root_service, settings)
   setupInstrumentation(root_service, settings)
+  setupJSONRPCServer(root_service)
   return root_service
 
 
@@ -208,3 +209,12 @@ def setupInstrumentation(root_service, settings):
 
   service = InstrumentationService()
   service.setServiceParent(root_service)
+
+
+def setupJSONRPCServer(application):
+  from pyleveltsd.cstore import LevelTsdRpc
+  from twisted.web import server
+
+  factory = server.Site(LevelTsdRpc())
+  jsonrpcServer = TCPServer(2005, factory)
+  jsonrpcServer.setServiceParent(application)
