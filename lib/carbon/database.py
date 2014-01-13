@@ -149,5 +149,6 @@ except ImportError:
 
 try:
   from pyleveltsd.writer import LevelTsd
+  import pyleveltsd.cstore
 except ImportError:
   pass
