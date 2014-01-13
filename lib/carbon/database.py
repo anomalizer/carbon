@@ -142,12 +142,12 @@ else:
 
 # extra plugin
 try:
-  import koolstof
+  import LevelTsd.cstore
 except ImportError:
   pass
 
-# extra plugin
+
 try:
-  import LevelTsd.cstore
+  from pyleveltsd.writer import LevelTsd
 except ImportError:
   pass
